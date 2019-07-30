@@ -30,7 +30,7 @@ char SerialReceiver::getChar() {
     return rxBuff[rxTail];
 }
 
-void SerialReceiver::getString(char *str) {
+void SerialReceiver::getString(char *str) { 
     char c;
     if (line) {
         while (c = getChar()) {
@@ -42,15 +42,14 @@ void SerialReceiver::getString(char *str) {
     }
 }
 
-void SerialReceiver::usartEvent(char *rxString) {
+void SerialReceiver::receiverEvent(char *rxString) {
     if (line) {
         getString(rxString);
-        Serial.print("RX: ");
-        Serial.println(rxString);
+        (*rxCallback)(rxString);
     }
 }
 
 void SerialReceiver::setOnReceiveCallback(void (*callback)(char * rxStr)) {
-
+     rxCallback = callback;
 }
 

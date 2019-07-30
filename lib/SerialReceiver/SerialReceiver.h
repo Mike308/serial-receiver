@@ -8,7 +8,7 @@ class SerialReceiver {
     public:
         SerialReceiver();
         void setOnReceiveCallback(void (*callback)(char * rxStr));
-        void usartEvent(char * rxStr);
+        void receiveEvent(char * rxStr);
         void isrHandler();
         void getString(char *str);
 
